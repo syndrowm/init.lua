@@ -13,11 +13,9 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
+  use({'Mofiqul/dracula.nvim',
 	  config = function()
-		  vim.cmd('colorscheme rose-pine')
+		  vim.cmd('colorscheme dracula')
 	  end
   })
 
@@ -26,6 +24,7 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+  use('ap/vim-buftabline')
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
