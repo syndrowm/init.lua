@@ -4,22 +4,23 @@ require("syn.packer")
 require("syn.skeleton")
 
 local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
 local ThePrimeagenGroup = augroup('ThePrimeagen', {})
 
-local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
 function R(name)
     require("plenary.reload").reload_module(name)
 end
 
+-- highlight text that was yanked
 autocmd('TextYankPost', {
     group = yank_group,
     pattern = '*',
     callback = function()
         vim.highlight.on_yank({
             higroup = 'IncSearch',
-            timeout = 40,
         })
     end,
 })
