@@ -1,6 +1,7 @@
 require("syn.set")
 require("syn.remap")
 require("syn.packer")
+require("syn.skeleton")
 
 local augroup = vim.api.nvim_create_augroup
 local ThePrimeagenGroup = augroup('ThePrimeagen', {})
