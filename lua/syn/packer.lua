@@ -13,6 +13,9 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- requires plenary which is installed above
+  use 'jose-elias-alvarez/null-ls.nvim'
+
   use({'Mofiqul/dracula.nvim',
 	  config = function()
 		  vim.cmd('colorscheme dracula')
