@@ -7,7 +7,6 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 local ThePrimeagenGroup = augroup('ThePrimeagen', {})
-
 local yank_group = augroup('HighlightYank', {})
 
 function R(name)
@@ -21,10 +20,12 @@ autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({
             higroup = 'IncSearch',
+            timeout = 350
         })
     end,
 })
 
+-- strip spaces at the end of files
 autocmd({"BufWritePre"}, {
     group = ThePrimeagenGroup,
     pattern = "*",
