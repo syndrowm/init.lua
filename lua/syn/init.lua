@@ -6,8 +6,8 @@ require("syn.skeleton")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
-local yank_group = augroup('HighlightYank', {})
+local ThePrimeagenGroup = augroup('ThePrimeagen', { clear = true })
+local yank_group = augroup('HighlightYank', { clear = true })
 
 function R(name)
     require("plenary.reload").reload_module(name)
@@ -35,3 +35,13 @@ autocmd({"BufWritePre"}, {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+-- ignore multiple different client offset_encodings warning
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end
