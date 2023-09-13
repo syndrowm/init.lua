@@ -1,13 +1,3 @@
-require("dracula").setup({
-	disable_background = true,
-})
-
-require("github-theme").setup({
-	theme_style = "dark_default",
-    transparent = true,
-	-- other config
-})
-
 function ColorMyPencils(color)
 	color = color or "github_dark"
 	vim.cmd.colorscheme(color)
@@ -16,4 +6,4 @@ function ColorMyPencils(color)
 	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-ColorMyPencils()
+-- ColorMyPencils()

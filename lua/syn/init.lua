@@ -1,6 +1,6 @@
 require("syn.set")
 require("syn.remap")
-require("syn.packer")
+require("syn.lazy")
 require("syn.skeleton")
 
 local augroup = vim.api.nvim_create_augroup
