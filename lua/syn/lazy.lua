@@ -27,9 +27,9 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	-- requires plenary which is installed above
-	"jose-elias-alvarez/null-ls.nvim",
+	-- "jose-elias-alvarez/null-ls.nvim",
 
-	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"nvim-treesitter/playground",
 	"mbbill/undotree",
 	"tpope/vim-fugitive",
@@ -41,7 +41,6 @@ require("lazy").setup({
 		end,
 	},
 
-	"folke/zen-mode.nvim",
 	"github/copilot.vim",
 	-- "simrat39/rust-tools.nvim")
 	{
@@ -50,11 +49,24 @@ require("lazy").setup({
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("github-theme").setup({
-				options = { transparent = true },
+				options = {
+					transparent = true,
+					styles = {
+						functions = "bold",
+					},
+				},
 			})
 
 			vim.cmd("colorscheme github_dark")
+			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 		end,
+	},
+    'Mofiqul/vscode.nvim',
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
 	},
 	{
 		"folke/which-key.nvim",
@@ -69,32 +81,18 @@ require("lazy").setup({
 			-- refer to the configuration section below
 		},
 	},
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
-		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
-			{ "williamboman/mason.nvim" }, -- Optional
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
+	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" }, -- Required
-		},
-	},
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+
+	-- LSP Support
+	{ "neovim/nvim-lspconfig" },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+
+	-- Autocompletion
+	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "L3MON4D3/LuaSnip" },
 })
-
-local lsp = require("lsp-zero").preset({})
-
-lsp.on_attach(function(client, bufnr)
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp.default_keymaps({ buffer = bufnr })
-end)
-
--- (Optional) Configure lua language server for neovim
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
