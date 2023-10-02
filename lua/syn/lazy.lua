@@ -42,7 +42,6 @@ require("lazy").setup({
 	},
 
 	"github/copilot.vim",
-	-- "simrat39/rust-tools.nvim")
 	{
 		"projekt0n/github-nvim-theme",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme

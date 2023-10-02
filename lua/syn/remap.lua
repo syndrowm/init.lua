@@ -43,3 +43,10 @@ vim.keymap.set("n", "<C-k>", "<cmd>bp<CR>")
 vim.keymap.set("n", "<C-x>", "<cmd>bd<CR>")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc="Global replace the word under the cursor."})
+
+-- inlay_hint is in nightly due for 0.1.0 release
+if vim.lsp.inlay_hint then
+  vim.keymap.set('n', '<leader>h', function()
+    vim.lsp.inlay_hint(0, nil)
+  end, { desc = 'Toggle Inlay Hints' })
+end
