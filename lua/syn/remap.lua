@@ -47,7 +47,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- inlay_hint is in nightly due for 0.1.0 release
 if vim.lsp.inlay_hint then
   vim.keymap.set('n', '<leader>h', function()
-    vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, { desc = 'Toggle Inlay Hints' })
 end
 
